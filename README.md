@@ -1,6 +1,6 @@
 <h1>NGINX STARTER</h1> 
 
-이 프로젝트는 <strong>Nginx 설치에 어려움을 느끼거나</strong>, <strong>파이썬 코드로 Nginx서버 로그 관리를 더욱 편하게 할 수 있도록</strong> 도와줄수 있는 통합 패키지 입니다.
+이 프로젝트는 <strong>Nginx 설치에 어려움을 느끼거나 Nginx 설정에 어려움을 느낄 때 자동적으로 설정해주고</strong>, <strong>파이썬 코드로 Nginx서버 로그 관리를 더욱 편하게 할 수 있도록</strong> 도와줄수 있는 통합 패키지 입니다.
 
 ---
 
