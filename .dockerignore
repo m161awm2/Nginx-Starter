@@ -1,0 +1,6 @@
+.git
+README.md
+serverHelper.py
+serverInstaller.sh
+Dockerfile
+.dockerignore
