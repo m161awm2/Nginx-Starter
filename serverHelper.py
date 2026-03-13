@@ -2,9 +2,11 @@ import subprocess
 print("서버 도우미가 실행됩니다.")
 ACCESS_LOG = "/var/log/nginx/access.log"
 ERROR_LOG = "/var/log/nginx/error.log"
+SERVER_IP = subprocess.run(["hostname", "-I"]).decode().split()[0]
 while 1:
     print("======= 선 택 =======")
-    print("1. 접속 로그 확인\n2.오류 로그 확인\n3.nginx 상태 확인\n4.종료")
+    print("Server IP :", SERVER_IP)
+    print("1. 접속 로그 확인\n2. 오류 로그 확인\n3. nginx 상태 확인\n4. 종료")
     choice = int(input())
     if choice == 1:
         with open(ACCESS_LOG, "r") as f:
@@ -20,4 +22,5 @@ while 1:
         break
     else:
         print("?")
+
 
