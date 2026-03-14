@@ -2,7 +2,7 @@ import subprocess
 print("서버 도우미가 실행됩니다.")
 ACCESS_LOG = "/var/log/nginx/access.log"
 ERROR_LOG = "/var/log/nginx/error.log"
-SERVER_IP = subprocess.run(["hostname", "-I"]).decode().split()[0]
+SERVER_IP = subprocess.run(["hostname", "-I"], capture_output=True, text=True).stdout.split()[0]
 while 1:
     print("======= 선 택 =======")
     print("Server IP :", SERVER_IP)
