@@ -1,7 +1,7 @@
 name: Nginx-Starter CI
 
 on:
-  push: [push]
+  push:
   pull_request:
 
 jobs:
