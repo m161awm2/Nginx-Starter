@@ -19,7 +19,6 @@ while 1:
     elif choice == 4:
         subprocess.run(["bash","serverInstaller.sh"])
         break
-        
     elif choice == 5:
         print("프로그램을 종료합니다.")
         break
