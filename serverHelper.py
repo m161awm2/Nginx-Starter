@@ -6,7 +6,7 @@ SERVER_IP = subprocess.run(["hostname", "-I"], capture_output=True, text=True).s
 while 1:
     print("======= 선 택 =======")
     print("Server IP :", SERVER_IP)
-    print("1. 접속 로그 확인\n2. 오류 로그 확인\n3. nginx 상태 확인\n4. 종료")
+    print("1. 접속 로그 확인\n2. 오류 로그 확인\n3. nginx 상태 확인\n4. 돌아가기\n5. 프로그램 종료")
     choice = int(input())
     if choice == 1:
         with open(ACCESS_LOG, "r") as f:
@@ -16,8 +16,11 @@ while 1:
             print(f.read())
     elif choice == 3:
         subprocess.run(["systemctl", "status", "nginx", "--no-pager"])
-
     elif choice == 4:
+        subprocess.run(["bash","serverInstaller.sh"])
+        break
+        
+    elif choice == 5:
         print("프로그램을 종료합니다.")
         break
     else:
