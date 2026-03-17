@@ -1,28 +1,40 @@
+from flask import Flask ,render_template
 import subprocess
-print("서버 도우미가 실행됩니다.")
+app = Flask(__name__)
+
 ACCESS_LOG = "/var/log/nginx/access.log"
 ERROR_LOG = "/var/log/nginx/error.log"
-SERVER_IP = subprocess.run(["hostname", "-I"], capture_output=True, text=True).stdout.split()[0]
-while 1:
-    print("======= 선 택 =======")
-    print("Server IP :", SERVER_IP)
-    print("1. 접속 로그 확인\n2. 오류 로그 확인\n3. nginx 상태 확인\n4. 돌아가기\n5. 프로그램 종료")
-    choice = int(input())
-    if choice == 1:
-        with open(ACCESS_LOG, "r") as f:
-            print(f.read())
-    elif choice == 2:
-        with open(ERROR_LOG, "r") as f:
-            print(f.read())
-    elif choice == 3:
-        subprocess.run(["systemctl", "status", "nginx", "--no-pager"])
-    elif choice == 4:
-        subprocess.run(["bash","serverInstaller.sh"])
-        break
-    elif choice == 5:
-        print("프로그램을 종료합니다.")
-        break
-    else:
-        print("?")
+SERVER_IP = 1
 
+@app.route('/')
+def home():
+    return render_template("index.html")
+@app.route('/status')
+def status():
+    result = subprocess.run(
+        ["systemctl", "status", "nginx", "--no-pager"],
+        capture_output=True,
+        text=True
+    )
+    return f"<pre>{result.stdout}</pre>"
+@app.route('/access-log')
+def access_log():
+    with open(ACCESS_LOG, "r") as f:
+        log_data = f.read()
+    return f"<pre>{log_data}</pre>"
+@app.route('/error-log')
+def error_log():
+    with open(ERROR_LOG, "r") as f:
+        error_log = f.read()
+    return f"<pre>{error_log}</pre>"        
 
+@app.route('/restart',methods=["POST"])
+def restart():
+    subprocess.run(
+         ["systemctl", "restart", "nginx"],
+        capture_output=True,
+        text=True
+    )
+    return "<pre>재시작 완료</pre>"
+
+app.run(host="0.0.0.0",port=5000)

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>NGINX STARTER</title>
+</head>
+<body>
+    <h1>NGINX STARTER</h1>
+
+    <form action="/status" method="get">
+        <button type="submit">상태 확인</button>
+    </form>
+
+    <form action="/access-log" method="get">
+        <button type="submit">Access 로그</button>
+    </form>
+
+    <form action="/error-log" method="get">
+        <button type="submit">Error 로그</button>
+    </form>
+
+    <form action="/restart" method="post">
+        <button type="submit">Nginx 재시작</button>
+    </form>
+</body>
+</html>
